@@ -74,7 +74,6 @@ class User(AbstractUser):
     expertise_level=models.CharField(choices=EXPERTISELEVEL_CHOICES,max_length=1,null=True,blank=True)
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
-    multiple_image=models.ManyToManyField(MediaFile, related_name='user_profiles', blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
     
     
@@ -85,11 +84,3 @@ class User(AbstractUser):
     @property
     def is_jobseeker(self):
         return self.jobtitle is None and self.expertise_level is None
-    
-class MediaFile(models.Model):
-    multiple_image=models.ImageField(upload_to='uploads/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
-    
-    def __str__(self):
-        return self.multiple_image

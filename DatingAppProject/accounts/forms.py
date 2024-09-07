@@ -44,9 +44,9 @@ class PersonalDetailsForm (forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': ' Qualification',
             }),
-            'location': forms.CharField(attrs={
+             'location': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': ' Location',
+                'placeholder': 'Location'
             }),
             'profile_picture': forms.FileInput(attrs={
                 'class': 'form-control',

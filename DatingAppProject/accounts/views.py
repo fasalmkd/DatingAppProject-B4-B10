@@ -1,4 +1,3 @@
-
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -14,7 +13,7 @@ from .models import   User
 
 class PersonalDetailsView(FormView):
     form_class = PersonalDetailsForm
-    template_name = 'Dating/details.html'
+    template_name = 'dating/details.html'
     success_url = reverse_lazy('new_app:job_status')
 
     def get_form_kwargs(self):
