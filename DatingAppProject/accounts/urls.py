@@ -1,13 +1,13 @@
-from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
+from django. urls import path
+from .import views
 
-
+app_name = 'accounts'
 
 urlpatterns = [
-    
+
+    path('', views.PersonalDetailsView.as_view(), name='details'),
+    # path('job_status', views.JobStatusView.as_view(), name='job_status'),
+    # path('job_details', views.JobDetailsView.as_view(), name='job_details'),
+    # path('job_seeker', views.JobSeekerView.as_view(), name='job_seeker'),
+
 ]
-
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
