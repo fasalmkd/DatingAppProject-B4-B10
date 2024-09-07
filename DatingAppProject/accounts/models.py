@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 
 
 
+
 class Location(models.Model):
     id=models.AutoField(primary_key=True)
     CITY_CHOICES = (('KNR','Kannur'),('KH','Kochi'))
@@ -39,6 +40,10 @@ class Qualification(models.Model):
     id=models.AutoField(primary_key=True)
     QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
     qualification=models.CharField(choices=QUALIFICATION_CHOICES,max_length=3)
+
+
+
+
 class User(AbstractUser):
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
@@ -69,6 +74,7 @@ class User(AbstractUser):
     expertise_level=models.CharField(choices=EXPERTISELEVEL_CHOICES,max_length=1,null=True,blank=True)
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
+    multiple_image=models.ManyToManyField(MediaFile, related_name='user_profiles', blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
     
     
@@ -80,3 +86,10 @@ class User(AbstractUser):
     def is_jobseeker(self):
         return self.jobtitle is None and self.expertise_level is None
     
+class MediaFile(models.Model):
+    multiple_image=models.ImageField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    
+    def __str__(self):
+        return self.multiple_image
