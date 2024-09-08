@@ -1,0 +1,135 @@
+body {
+    background-image: url('/static/image/background.jpg');
+    background-position: center 120%  ;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: auto;
+    background-repeat: no-repeat;
+
+    }
+
+.container {
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+width: 320px;
+padding: 20px;
+margin-top: 20px;
+line-height: 10px;
+}
+
+
+
+
+form h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.form-control {
+width: 100%;
+padding: 10px;
+margin-bottom: 15px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 16px;
+color: #D3D3D3;
+}
+button {
+width: 100%;
+padding: 15px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+margin-bottom: 10px;
+}
+
+button#register-btn {
+background-color: #000;
+color: #fff;
+}
+ul {
+list-style-type: none; /* Removes bullet points */
+padding-left: 0; /* Removes any left padding */
+margin: 0; /* Removes any margins */
+}
+select.form-control {
+height: auto; /* Ensure the height adjusts based on content */
+padding-top: 10px; /* Adjust padding to center text */
+padding-bottom: 10px; /* Adjust padding to center text */
+line-height: 1.5; /* Adjust line height for better text alignment */
+font-size: 16px; /* Adjust font size if needed */
+box-sizing: border-box; /* Ensure padding is included in height calculation */
+}
+
+
+.file-input-wrapper {
+position: relative;
+display: inline-block;
+width: 100%;
+}
+
+.file-input-wrapper input[type="file"] {
+width: 100%;
+padding: 10px;
+border: 1px solid #ced4da;
+position: relative;
+z-index: 1;
+
+}
+
+.file-input-wrapper .placeholder-text {
+position: absolute;
+top: 50%;
+left: 10px;
+transform: translateY(-50%);
+color: #6c757d;
+pointer-events: none;
+z-index: 0;
+}
+
+.file-input-wrapper input[type="file"]:focus + .placeholder-text,
+.file-input-wrapper input[type="file"]:not(:placeholder-shown) + .placeholder-text {
+display: none;
+}
+.file-input-wrapper {
+margin-bottom: 15px;
+padding: -10px;
+}
+
+
+
+
+.file label {
+display: flex;
+color: #D3D3D3;
+padding: 0.9rem;
+font-family: sans-serif;
+border: 1px solid #ced4da;
+border-radius: 0.3rem;
+cursor: pointer;
+margin-top: 1rem;
+}
+
+.file-icon svg {
+    position:absolute;
+    right: 620px;
+    top: 495px;
+   transform: translateY(40%);
+      }
+
+
+.more-file-icon svg {
+    position:absolute;
+    right: 620px;
+    top: 550px;
+   transform: translateY(40%);
+      }
+.reel-icon svg {
+    position:absolute;
+    right: 620px;
+    top: 605px;
+   transform: translateY(40%);
+      }

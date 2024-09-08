@@ -6,12 +6,12 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 
-class PersonalDetailsForm (forms.ModelForm):
+class PersonalDetailsForm(forms.ModelForm):
 
     class Meta:
         model = User
         fields = ["age","dob","hobbies","interest","drinking_habits",
-                  "smoking_habits","qualification","location","profile_picture","multiple_image","short_reel"]
+                  "smoking_habits","qualification","location","profile_pic","short_reel"]
         widgets = {
             'age': forms.NumberInput(attrs={
                 'class': 'form-control',
@@ -48,16 +48,10 @@ class PersonalDetailsForm (forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Location'
             }),
-            'profile_picture': forms.FileInput(attrs={
+            'profile_pic': forms.FileInput(attrs={
                 'class': 'form-control',
                 'style': 'border: 1px solid #ced4da; padding: 10px;',
                 'title': 'Upload Profile Picture',
-            }),
-            'multiple_image': forms.FileInput(attrs={
-                'class': 'form-control',
-                'style': 'border: 1px solid #ced4da; padding: 10px;',
-                'title': 'Upload Profile Picture',
-
             }),
             'short_reel': forms.FileInput(attrs={
                 'class': 'form-control',
@@ -106,7 +100,7 @@ class PersonalDetailsForm (forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-       super(RegisterForm, self).__init__(*args, **kwargs)
+       super(PersonalDetailsForm, self).__init__(*args, **kwargs)
        self.fields['hobbies'].empty_label = "Hobby"
        self.fields['interest'].empty_label = "Interest"
        self.fields['qualification'].empty_label = "Qualification"

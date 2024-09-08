@@ -12,7 +12,7 @@ from .models import   User
 # Create your views here.
 
 class PersonalDetailsView(FormView):
-    form_class = PersonalDetailsForm
+    form_class = PersonalDetailsForm 
     template_name = 'dating/details.html'
     success_url = reverse_lazy('new_app:job_status')
 
@@ -21,7 +21,7 @@ class PersonalDetailsView(FormView):
         if self.request.user.is_authenticated:
             kwargs.update({
                 'instance': self.request.user,
-                'data': self.request.POST or None,
+                'data':self.request.POST or None,
             })
         else:
             kwargs.update({
@@ -29,9 +29,11 @@ class PersonalDetailsView(FormView):
             })
         return kwargs
 
-    def form_valid(self, form):
+    def form_valid(self,form):
         if self.request.user.is_authenticated:
             form.save()
         return super().form_valid(form)
+
+    
 
 # Create your views here.

@@ -10,7 +10,6 @@ admin.site.register(Habbit)
 admin.site.register(Hobbies)
 admin.site.register(Qualification)
 admin.site.register(Location)
-# admin.site.register(MediaFile)
 
 
 
