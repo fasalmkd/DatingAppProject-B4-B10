@@ -14,7 +14,7 @@ from .models import   User
 class PersonalDetailsView(FormView):
     form_class = PersonalDetailsForm 
     template_name = 'dating/details.html'
-    success_url = reverse_lazy('new_app:job_status')
+    success_url = reverse_lazy('accounts:job_status')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -39,7 +39,7 @@ class PersonalDetailsView(FormView):
 # Create your views here.
 class JobStatusView(TemplateView):
     template_name = 'dating/job_status.html'
-    success_url = reverse_lazy('new_app:job_details')
+    success_url = reverse_lazy('accounts:job_details')
 
 
 class JobDetailsView(FormView):

@@ -115,7 +115,7 @@ class JobDetailsForm(forms.ModelForm):
                 'placeholder': ' Company Name',
             }),
 
-            'designation': forms.Select(attrs={
+            'designation': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': ' Designation',
             }),
