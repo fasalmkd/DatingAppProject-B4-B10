@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import View,FormView
+from django.views.generic import View,FormView,TemplateView
 
 from.forms import *
 from .forms import PersonalDetailsForm
@@ -37,3 +37,6 @@ class PersonalDetailsView(FormView):
     
 
 # Create your views here.
+class JobStatusView(TemplateView):
+    template_name = 'dating/job_status.html'
+    success_url = reverse_lazy('new_app:job_details')

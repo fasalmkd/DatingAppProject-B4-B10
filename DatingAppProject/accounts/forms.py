@@ -49,7 +49,6 @@ class PersonalDetailsForm(forms.ModelForm):
                 'placeholder': 'Location'
             }),
             'profile_pic': forms.FileInput(attrs={
-                'class': 'form-control',
                 'style': 'border: 1px solid #ced4da; padding: 10px;',
                 'title': 'Upload Profile Picture',
             }),

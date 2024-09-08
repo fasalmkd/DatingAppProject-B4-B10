@@ -38,40 +38,40 @@ class Habbit(models.Model):
 
 class Qualification(models.Model):
     id=models.AutoField(primary_key=True)
-    QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
-    qualification=models.CharField(choices=QUALIFICATION_CHOICES,max_length=3)
+    qualification=models.CharField(null=True,max_length=3)
 
 
 
 
 class User(AbstractUser):
+    QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
     JOB_CHOICES = (('ER','Employer'),('EE','Employee'),('JS','Jobseeker'))
     
-    age=models.SmallIntegerField(null=True,blank=True,
+    age=models.SmallIntegerField(null=True,
                                 validators=[MinValueValidator(18),MaxValueValidator(34)])
     dob=models.DateField(null=True)
-    phone=models.CharField(max_length=10,blank=True)
+    phone=models.CharField(max_length=10,null=True)
     dob=models.DateField(null=True,unique=True)
-    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=True)	
-    location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,blank=True,related_name="user_location")
+    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,null=True)	
+    location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,related_name="user_location")
     
     
     smoking_habits = models.ForeignKey(Habbit,on_delete=models.SET_NULL,null=True,related_name="user_smoking_habit")
     drinking_habits = models.ForeignKey(Habbit,on_delete=models.SET_NULL,null=True,related_name="user_drinking_habit")
     interest = models.ForeignKey(Interest,on_delete=models.SET_NULL,null=True,related_name="user_interest")
     hobbies = models.ForeignKey(Hobbies,on_delete=models.SET_NULL,null=True,related_name="user_hobbies")
-    qualification=models.ForeignKey(Qualification,on_delete=models.SET_NULL,null=True,related_name="user_qualification")
+    qualification=models.ForeignKey(Qualification,on_delete=models.SET_NULL,null=True,choices=QUALIFICATION_CHOICES,related_name="user_qualification")
     
     
     job_status = models.CharField(choices=JOB_CHOICES,max_length=2,null=True)
     company_name=models.CharField(null=True,max_length=100)
     designation=models.CharField(null=True,max_length=100)
-    work_location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,blank=True,related_name="user_work_location")
+    work_location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,related_name="user_work_location")
     
     jobtitle=models.CharField(null=True,max_length=100)
-    expertise_level=models.CharField(choices=EXPERTISELEVEL_CHOICES,max_length=1,null=True,blank=True)
+    expertise_level=models.CharField(choices=EXPERTISELEVEL_CHOICES,max_length=1,null=True)
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
