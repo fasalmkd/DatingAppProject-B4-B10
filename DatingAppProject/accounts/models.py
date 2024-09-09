@@ -29,40 +29,49 @@ class Hobbies(models.Model):
         return self.hobby
 		
 		
-class Habbit(models.Model):
-    id=models.AutoField(primary_key=True)
-    HABBIT_CHOICES = (('R','Regularly'),('O','Occasionally'),('Q','Quitting'),('N','Never'))
-    habit=models.CharField(choices=HABBIT_CHOICES,max_length=1)	
-    def __str__(self):
-        return self.habit	
+	
 
 class Qualification(models.Model):
     id=models.AutoField(primary_key=True)
-    qualification=models.CharField(null=True,max_length=3)
+    QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
+    qualification=models.CharField(choices=QUALIFICATION_CHOICES,max_length=3)
+    def __str__(self):
+        return self.qualification
 
-
+class Multiple_Image(models.Model):
+    id=models.AutoField(primary_key=True)
+    multiple_image=models.ImageField(upload_to='multiple_pic/',null=True,blank=True)
 
 
 class User(AbstractUser):
-    QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
     JOB_CHOICES = (('ER','Employer'),('EE','Employee'),('JS','Jobseeker'))
+    DRINKING_CHOICES = [
+        ('', 'Drinking Habit'),
+        ('yes', 'Yes'),
+        ('no', 'No'),
+    ]
+    SMOKING_CHOICES = [
+        ('', 'Smoking Habit'),
+        ('yes', 'Yes'),
+        ('no', 'No'),
+    ]
     
     age=models.SmallIntegerField(null=True,
                                 validators=[MinValueValidator(18),MaxValueValidator(34)])
     dob=models.DateField(null=True)
-    phone=models.CharField(max_length=10,null=True)
+    phone=models.CharField(max_length=10)
     dob=models.DateField(null=True,unique=True)
-    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,null=True)	
+    gender=models.CharField(max_length=1,choices=GENDER_CHOICES)	
     location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,related_name="user_location")
     
     
-    smoking_habits = models.ForeignKey(Habbit,on_delete=models.SET_NULL,null=True,related_name="user_smoking_habit")
-    drinking_habits = models.ForeignKey(Habbit,on_delete=models.SET_NULL,null=True,related_name="user_drinking_habit")
+    smoking_habits = models.CharField(max_length=15, choices=DRINKING_CHOICES, blank=True)
+    drinking_habits = models.CharField(max_length=3, choices=SMOKING_CHOICES, blank=True)
     interest = models.ForeignKey(Interest,on_delete=models.SET_NULL,null=True,related_name="user_interest")
     hobbies = models.ForeignKey(Hobbies,on_delete=models.SET_NULL,null=True,related_name="user_hobbies")
-    qualification=models.ForeignKey(Qualification,on_delete=models.SET_NULL,null=True,choices=QUALIFICATION_CHOICES,related_name="user_qualification")
+    qualification=models.ForeignKey(Qualification,on_delete=models.SET_NULL,null=True,related_name="user_qualification")
     
     
     job_status = models.CharField(choices=JOB_CHOICES,max_length=2,null=True)
@@ -74,6 +83,7 @@ class User(AbstractUser):
     expertise_level=models.CharField(choices=EXPERTISELEVEL_CHOICES,max_length=1,null=True)
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
+    multiple_image=models.ForeignKey(Multiple_Image,on_delete=models.SET_NULL,null=True,blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
     
     
@@ -84,3 +94,5 @@ class User(AbstractUser):
     @property
     def is_jobseeker(self):
         return self.jobtitle is None and self.expertise_level is None
+
+

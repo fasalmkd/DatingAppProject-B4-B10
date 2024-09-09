@@ -35,11 +35,10 @@ class PersonalDetailsView(FormView):
         return super().form_valid(form)
 
     
-
-# Create your views here.
 class JobStatusView(TemplateView):
     template_name = 'dating/job_status.html'
     success_url = reverse_lazy('accounts:job_details')
+
 
 
 class JobDetailsView(FormView):

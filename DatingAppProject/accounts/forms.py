@@ -33,11 +33,9 @@ class PersonalDetailsForm(forms.ModelForm):
             }),
             'drinking_habits': forms.Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'Drinking Habit'
             }),
             'smoking_habits': forms.Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'Smoking Habit'
             }),
 
             'qualification': forms.Select(attrs={
@@ -103,6 +101,10 @@ class PersonalDetailsForm(forms.ModelForm):
        self.fields['hobbies'].empty_label = "Hobby"
        self.fields['interest'].empty_label = "Interest"
        self.fields['qualification'].empty_label = "Qualification"
+       self.fields['drinking_habits'].empty_label = "Drinking Habits"
+       self.fields['smoking_habits'].empty_label = "Smoking Habits"
+
+       self.fields['drinking_habits'].initial = None
 
 
 class JobDetailsForm(forms.ModelForm):
