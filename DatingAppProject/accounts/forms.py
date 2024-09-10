@@ -67,3 +67,11 @@ class UserCreationForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'phone_number', 'password']
 
+class EmailOrMobileAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(label='Email or Mobile', max_length=254,  widget=forms.TextInput({'class':'form-control'}))
+    password = forms.CharField(
+        max_length=25,
+        min_length=8,
+        widget=forms.PasswordInput({'class':'form-control'})
+    
+    )

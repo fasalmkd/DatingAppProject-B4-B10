@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts'
 ]
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailOrMobileBackend',  # Custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
