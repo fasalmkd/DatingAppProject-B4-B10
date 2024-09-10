@@ -77,27 +77,6 @@ cursor: pointer;
 margin-top: 1rem;
 }
 
-.file-icon svg {
-    position:absolute;
-    right: 620px;
-    top: 548px;
-   transform: translateY(40%);
-      }
-
-
-.more-file-icon svg {
-    position:absolute;
-    right: 620px;
-    top: 605px;
-   transform: translateY(40%);
-      }
-.reel-icon svg {
-    position:absolute;
-    right: 620px;
-    top: 655px;
-   transform: translateY(40%);
-      }
-
 
 
 

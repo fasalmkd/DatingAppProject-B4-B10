@@ -15,6 +15,27 @@
     <link rel="stylesheet" href="{% static 'css/details.css' %}">
 <style>
    
+.file-icon svg {
+    position:absolute;
+    right: 620px;
+    top: 555px;
+   transform: translateY(40%);
+      }
+
+
+.more-file-icon svg {
+    position:absolute;
+    right: 620px;
+    top: 610px;
+   transform: translateY(40%);
+      }
+.reel-icon svg {
+    position:absolute;
+    right: 620px;
+    top: 662px;
+   transform: translateY(40%);
+      }
+
 </style>
 </head>
 <body>
@@ -22,6 +43,7 @@
      <form method="post" enctype="multipart/form-data">
          <center><h2>Personal Details</h2></center>
     {% csrf_token %}
+    {{ form.errors }}
    <div class="form-group">
         {{ form.age }}
     </div>

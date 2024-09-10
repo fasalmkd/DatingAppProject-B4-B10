@@ -42,7 +42,7 @@ class PersonalDetailsForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': ' Qualification',
             }),
-             'location': forms.TextInput(attrs={
+             'location': forms.Select(attrs={
                 'class': 'form-control',
                 'placeholder': 'Location'
             }),
@@ -101,6 +101,7 @@ class PersonalDetailsForm(forms.ModelForm):
        self.fields['hobbies'].empty_label = "Hobby"
        self.fields['interest'].empty_label = "Interest"
        self.fields['qualification'].empty_label = "Qualification"
+       self.fields['location'].empty_label = "Location"
        self.fields['drinking_habits'].empty_label = "Drinking Habits"
        self.fields['smoking_habits'].empty_label = "Smoking Habits"
 
