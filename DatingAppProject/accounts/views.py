@@ -56,24 +56,18 @@ class SignupView(FormView):
     # Redirect to the success URL
         return redirect(self.success_url)
 
+class LoginView(AuthLoginView):
+    template_name = 'accounts/login.html'
+    form_class = EmailOrMobileAuthenticationForm
+    success_url = reverse_lazy('accounts:details')
+
+    def form_valid(self, form):
+        user = form.get_user()
+        backend = 'accounts.backends.EmailOrMobileBackend'
+        login(self.request, user, backend=backend)
+        return redirect(self.success_url)
 
 
-
-# class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-#     template_name = 'myapp/password_reset.html'
-#     email_template_name = 'myapp/password_reset_email.html'
-#     subject_template_name = 'myapp/password_reset_subject'
-#     success_message = "We've emailed you instructions for setting your password, " \
-#                       "if an account exists with the email you entered. You should receive them shortly." \
-#                       " If you don't receive an email, " \
-#                       "please make sure you've entered the address you registered with, and check your spam folder."
-#     success_url = reverse_lazy('myapp:home')
-
-
-# class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-#     template_name = 'myapp/change_password.html'
-#     success_message = "Successfully Changed Your Password"
-#     success_url = reverse_lazy('myapp:home')
 
 class DetailsView(TemplateView):
     template_name = 'accounts/details.html'
