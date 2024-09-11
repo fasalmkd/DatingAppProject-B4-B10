@@ -2,10 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator,MaxValueValidator
 
-
-
-
-
 class Location(models.Model):
     id=models.AutoField(primary_key=True)
     CITY_CHOICES = (('KNR','Kannur'),('KH','Kochi'))
@@ -26,19 +22,21 @@ class Hobbies(models.Model):
     hobby = models.CharField(max_length=3,choices=HOBBY_CHOICES)
     def __str__(self):
         return self.hobby
-		
-		
+        
+        
 class Habbit(models.Model):
     id=models.AutoField(primary_key=True)
     HABBIT_CHOICES = (('R','Regularly'),('O','Occasionally'),('Q','Quitting'),('N','Never'))
-    habit=models.CharField(choices=HABBIT_CHOICES,max_length=1)	
+    habit=models.CharField(choices=HABBIT_CHOICES,max_length=1) 
     def __str__(self):
-        return self.habit	
+        return self.habit   
 
 class Qualification(models.Model):
     id=models.AutoField(primary_key=True)
     QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
     qualification=models.CharField(choices=QUALIFICATION_CHOICES,max_length=3)
+
+
 class User(AbstractUser):
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
@@ -47,9 +45,9 @@ class User(AbstractUser):
     age=models.SmallIntegerField(null=True,blank=True,
                                 validators=[MinValueValidator(18),MaxValueValidator(34)])
     dob=models.DateField(null=True)
-    phone=models.CharField(max_length=10,blank=True)
+    phone_number=models.CharField(max_length=10, unique=True,blank=True)
     dob=models.DateField(null=True,unique=True)
-    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=True)	
+    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=True) 
     location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,blank=True,related_name="user_location")
     
     
@@ -70,7 +68,7 @@ class User(AbstractUser):
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
-    
+
     
     @property
     def is_employer(self):
@@ -80,3 +78,7 @@ class User(AbstractUser):
     def is_jobseeker(self):
         return self.jobtitle is None and self.expertise_level is None
     
+
+
+
+
