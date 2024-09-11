@@ -11,7 +11,7 @@ class PersonalDetailsForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["age","dob","hobbies","interest","drinking_habits",
-                  "smoking_habits","qualification","location","profile_pic","short_reel"]
+                  "smoking_habits","qualification","location","profile_pic","multiple_image","short_reel"]
         widgets = {
             'age': forms.NumberInput(attrs={
                 'class': 'form-control',
@@ -47,13 +47,18 @@ class PersonalDetailsForm(forms.ModelForm):
                 'placeholder': 'Location'
             }),
             'profile_pic': forms.FileInput(attrs={
-                'style': 'border: 1px solid #ced4da; padding: 10px;',
-                'title': 'Upload Profile Picture',
+                'class': 'form-control',  # Add CSS class
+                'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px;',  # Add inline CSS if needed
+            }),
+            'multiple_image': forms.FileInput(attrs={
+                'class': 'form-control',
+                'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px;',
             }),
             'short_reel': forms.FileInput(attrs={
                 'class': 'form-control',
-                'style': 'border: 1px solid #ced4da; padding: 10px;',
+                'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px;',
             }),
+
         }
 
         labels = {

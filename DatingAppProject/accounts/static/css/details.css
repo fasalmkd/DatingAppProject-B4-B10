@@ -19,9 +19,6 @@ margin-top: 20px;
 line-height: 10px;
 }
 
-
-
-
 form h2 {
 text-align: center;
 margin-bottom: 20px;
@@ -36,25 +33,31 @@ border-radius: 5px;
 font-size: 16px;
 color: #D3D3D3;
 }
+
+
+
 button {
-width: 100%;
-padding: 15px;
-border: none;
-border-radius: 5px;
-font-size: 16px;
-cursor: pointer;
-margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-button#register-btn {
-background-color: #000;
-color: #fff;
+button:hover {
+    background-color: #333; /* Slight change on hover */
 }
+
+
 ul {
 list-style-type: none; /* Removes bullet points */
 padding-left: 0; /* Removes any left padding */
 margin: 0; /* Removes any margins */
 }
+
 select.form-control {
 height: auto; /* Ensure the height adjusts based on content */
 padding-top: 10px; /* Adjust padding to center text */

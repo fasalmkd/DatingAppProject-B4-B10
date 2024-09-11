@@ -36,6 +36,10 @@
    transform: translateY(40%);
       }
 
+      .form-control label {
+    color: #D3D3D3;
+}
+
 </style>
 </head>
 <body>
@@ -43,6 +47,7 @@
      <form method="post" enctype="multipart/form-data">
          <center><h2>Personal Details</h2></center>
     {% csrf_token %}
+
     {{ form.errors }}
    <div class="form-group">
         {{ form.age }}
@@ -76,8 +81,20 @@
         {{ form.location }}
     </div>
 
-    
+    <div class="form-group">
+        {{ form.profile_pic }}
+    </div>
 
+    <div class="form-group">
+        {{ form.multiple_image }}
+    </div>
+
+    <div class="form-group">
+        {{ form.short_reel }}
+    </div>
+
+    
+<!-- 
     <div class="file">
        <input type="file" id="profile-picture-input" hidden onchange="updatePlaceholder()"/>
        <label for="profile-picture-input" id="custom-placeholder-profile"> Profile Pic</label>
@@ -113,7 +130,7 @@
              4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/>
           </svg>
        </div>
-   </div><br><br>
+   </div><br><br> -->
 
 
     <button type="submit" id="register-btn">Next</button>
@@ -125,6 +142,12 @@
         });
      </script>
 
+    <script>
+          // Clear form fields when the page loads
+          window.onload = function() {
+            document.getElementById("PersonalDetailsForm").reset();
+        };
+    </script>
 
  </div>
 </body>
