@@ -39,7 +39,10 @@ class Qualification(models.Model):
     id=models.AutoField(primary_key=True)
     QUALIFICATION_CHOICES = (('G','Graduation'),('PG','Post Graduation'),('D','Diploma'))    
     qualification=models.CharField(choices=QUALIFICATION_CHOICES,max_length=3)
+
 class User(AbstractUser):
+    RELATIONSHIP_CHOICES=(('ST','Short Term Relationship'),('LT','Long Term Relationship'))
+    APP_CHOICES =(('D','Dating'),('M','Matrimony'))
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
     JOB_CHOICES = (('ER','Employer'),('EE','Employee'),('JS','Jobseeker'))
@@ -70,6 +73,9 @@ class User(AbstractUser):
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
+
+    relationship_goals=models.CharField(choices=RELATIONSHIP_CHOICES,max_length=2,blank=True,null=True)
+    app = models.CharField(choices=APP_CHOICES,max_length=1,blank=True,null=True)
     
     
     @property
