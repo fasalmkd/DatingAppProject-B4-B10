@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import User
+from .models import User,Multiple_Image
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
@@ -11,7 +11,7 @@ class PersonalDetailsForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["age","dob","hobbies","interest","drinking_habits",
-                  "smoking_habits","qualification","location","profile_pic","multiple_image","short_reel"]
+                  "smoking_habits","qualification","location","profile_pic","short_reel"]
         widgets = {
             'age': forms.NumberInput(attrs={
                 'class': 'form-control',
@@ -50,16 +50,15 @@ class PersonalDetailsForm(forms.ModelForm):
                 'class': 'form-control',  # Add CSS class
                 'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px;',  # Add inline CSS if needed
             }),
-            'multiple_image': forms.FileInput(attrs={
-                'class': 'form-control',
-                'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px;',
-            }),
+            
             'short_reel': forms.FileInput(attrs={
                 'class': 'form-control',
-                'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px;',
+                'style': 'width:100%; padding:10px; border: 1px solid #ccc; border-radius: 5px; ',
             }),
 
         }
+
+
 
         labels = {
             'age': '',
@@ -71,7 +70,6 @@ class PersonalDetailsForm(forms.ModelForm):
             'qualification': ' ',
             'location':' ',
             'profile_picture': '',
-            'multiple_image': ' ',
             'short_reel': ' ',
 
         }
@@ -111,6 +109,24 @@ class PersonalDetailsForm(forms.ModelForm):
        self.fields['smoking_habits'].empty_label = "Smoking Habits"
 
        self.fields['drinking_habits'].initial = None
+
+
+class Multiple_ImageForm(forms.ModelForm):
+    class Meta:
+        model = Multiple_Image
+        fields = ['multiple_image']
+        widgets = {
+            'multiple_image': forms.FileInput(attrs={'class': 'form-control'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['multiple_image'].widget.attrs.update({'multiple': True})  # Make sure it's 'widget', not 'widgets'
+
+
+
+
+
 
 
 class JobDetailsForm(forms.ModelForm):

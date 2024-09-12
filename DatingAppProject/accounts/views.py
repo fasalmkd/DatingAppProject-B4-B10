@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -10,29 +11,78 @@ from .models import   User
 
 
 # Create your views here.
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+
 
 class PersonalDetailsView(FormView):
-    form_class = PersonalDetailsForm 
+    form_class = PersonalDetailsForm
     template_name = 'dating/details.html'
     success_url = reverse_lazy('accounts:job_status')
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        if self.request.user.is_authenticated:
-            kwargs.update({
-                'instance': self.request.user,
-                'data':self.request.POST or None,
-            })
-        else:
-            kwargs.update({
-                'data': self.request.POST or None,
-            })
-        return kwargs
+    def get(self, request, *args, **kwargs):
+        # Instantiate both forms
+        personal_details_form = PersonalDetailsForm(instance=request.user)
+        multiple_image_form = Multiple_ImageForm()
+        return self.render_to_response({
+            'personal_details_form': personal_details_form,
+            'multiple_image_form': multiple_image_form,
+        })
 
-    def form_valid(self,form):
-        if self.request.user.is_authenticated:
-            form.save()
-        return super().form_valid(form)
+    def post(self, request, *args, **kwargs):
+        personal_details_form = PersonalDetailsForm(request.POST, request.FILES, instance=request.user)
+        multiple_image_form = Multiple_ImageForm(request.POST, request.FILES)
+
+    # Check if both forms are valid
+        if personal_details_form.is_valid() and multiple_image_form.is_valid():
+           personal_details_form.save()  # Save the personal details form
+
+        # Save multiple images
+           multiple_images = request.FILES.getlist('multiple_image')
+           for image in multiple_images:
+              Multiple_Image.objects.create(user=request.user, multiple_image=image)
+
+        # Redirect to success_url after both forms are valid
+           return HttpResponseRedirect(self.get_success_url())
+
+    # If forms are invalid, re-render the page with errors
+        return self.render_to_response({
+          'personal_details_form': personal_details_form,
+          'multiple_image_form': multiple_image_form,
+    })
+
+# class PersonalDetailsView(FormView):
+#     form_class = PersonalDetailsForm
+#     template_name = 'dating/details.html'
+#     success_url = reverse_lazy('accounts:job_status')
+
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         if self.request.user.is_authenticated:
+#             kwargs.update({
+#                 'instance': self.request.user,
+#                 'data': self.request.POST or None,
+#                 'files': self.request.FILES or None,  # Ensure files are passed
+#             })
+#         else:
+#             kwargs.update({
+#                 'data': self.request.POST or None,
+#                 'files': self.request.FILES or None,  # Ensure files are passed
+#             })
+#         return kwargs
+
+#     def form_valid(self, form):
+#         if self.request.user.is_authenticated:
+#             form.instance = self.request.user  # Bind user instance if necessary
+#             form.save()
+
+#             # Handling multiple files uploaded for the 'multiple_image' field
+#             multiple_images = self.request.FILES.getlist('multiple_image')
+#             for image in multiple_images:
+#                 # Logic to process each file (e.g., saving to the model)
+#                 YourModel.objects.create(user=self.request.user, image=image)
+
+#         return super().form_valid(form)
 
     
 class JobStatusView(TemplateView):

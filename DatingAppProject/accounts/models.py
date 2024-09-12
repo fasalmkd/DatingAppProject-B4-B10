@@ -38,9 +38,7 @@ class Qualification(models.Model):
     def __str__(self):
         return self.qualification
 
-class Multiple_Image(models.Model):
-    id=models.AutoField(primary_key=True)
-    multiple_image=models.ImageField(upload_to='multiple_pic/',null=True,blank=True)
+
 
 
 class User(AbstractUser):
@@ -83,7 +81,6 @@ class User(AbstractUser):
     expertise_level=models.CharField(choices=EXPERTISELEVEL_CHOICES,max_length=1,null=True)
 
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
-    multiple_image=models.ForeignKey(Multiple_Image,on_delete=models.SET_NULL,null=True,blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
     
     
@@ -96,3 +93,9 @@ class User(AbstractUser):
         return self.jobtitle is None and self.expertise_level is None
 
 
+class Multiple_Image(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images', null=True)
+    multiple_image = models.ImageField(upload_to='multiple_pic/', null=True, blank=True)
+
+    def __str__(self):
+        return self.multiple_image.name if self.multiple_image else "No Image"

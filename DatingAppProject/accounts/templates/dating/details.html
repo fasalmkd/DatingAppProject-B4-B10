@@ -36,8 +36,8 @@
    transform: translateY(40%);
       }
 
-      .button {
-        padding: 15px;
+.button {
+    padding: 20px;
         }
 
 </style>
@@ -50,40 +50,40 @@
 
     {{ form.errors }}
    <div class="form-group">
-        {{ form.age }}
+        {{ personal_details_form.age }}
     </div>
 
     <div class="form-group">
-        {{ form.dob }}
+        {{ personal_details_form.dob }}
     </div>
 
     <div class="form-group">
-        {{ form.hobbies }}
+        {{ personal_details_form.hobbies }}
     </div>
 
     <div class="form-group">
-        {{ form.interest }}
+        {{ personal_details_form.interest }}
     </div>
 
     <div class="form-group">
-        {{ form.drinking_habits }}
+        {{ personal_details_form.drinking_habits }}
     </div>
 
     <div class="form-group">
-        {{ form.smoking_habits }}
+        {{ personal_details_form.smoking_habits }}
     </div>
 
     <div class="form-group">
-        {{ form.qualification }}
+        {{ personal_details_form.qualification }}
     </div>
 
     <div class="form-group">
-        {{ form.location }}
+        {{ personal_details_form.location }}
     </div>
 
     <div class="form-group">
-        {{ form.profile_pic }}
-        <div class="file-icon" onclick="document.getElementById('profile-pic').click();">
+        {{ personal_details_form.profile_pic }}
+        <div class="file-icon" onclick="document.getElementById('profile_pic').click();">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
                <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
                <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2
@@ -93,8 +93,8 @@
     </div>
 
     <div class="form-group">
-        {{ form.multiple_image }}
-        <div class="more-file-icon" onclick="document.getElementById('profile-picture-input').click();">
+        {{ multiple_image_form.multiple_image }}
+        <div class="more-file-icon" onclick="document.getElementById('multiple_image').click();">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
                 <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
                 <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2
@@ -104,8 +104,8 @@
     </div>
 
     <div class="form-group">
-        {{ form.short_reel }}
-        <div class="reel-icon" onclick="document.getElementById('profile-picture-input').click();">
+        {{ personal_details_form.short_reel }}
+        <div class="reel-icon" onclick="document.getElementById('short_reel').click();">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
                class="bi bi-camera-video" viewBox="0 0 16 16">
                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16
@@ -157,11 +157,27 @@
     <button type="submit" id="register-btn">Next</button>
 </form>
      <script>
-         document.getElementById('profile-picture-input').addEventListener('change', function() {
+         document.getElementById('profile-pic').addEventListener('change', function() {
          var fileName = this.files.length ? this.files[0].name : "Choose Profile Picture";
         document.getElementById('custom-placeholder-profile').textContent = fileName;
         });
      </script>
+
+<script>
+    function updatePlaceholder(input, labelId) {
+        const fileLabel = document.getElementById(labelId);
+        const files = input.files;
+        
+        if (files.length === 1) {
+            fileLabel.value = files[0].name; // Display single file name
+        } else if (files.length > 1) {
+            fileLabel.value = `${files.length} files selected`; // Display file count for multiple files
+        } else {
+            fileLabel.value = ""; // Reset if no file is chosen
+        }
+    }
+</script>
+
 
     <script>
           // Clear form fields when the page loads
