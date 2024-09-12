@@ -18,7 +18,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-# Create your views here.
+# # Create your views here.
 
 
 class HomeView(TemplateView):
