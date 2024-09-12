@@ -14,12 +14,12 @@ body {
     top:190px;
     right: 600px;
     max-width: 270px;
-    width: 265px;
+    width: 270px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: white;
 
 }
 .checkbox-group {
