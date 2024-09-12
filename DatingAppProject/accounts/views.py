@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.http import HttpResponseRedirect
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -51,38 +52,7 @@ class PersonalDetailsView(FormView):
           'multiple_image_form': multiple_image_form,
     })
 
-# class PersonalDetailsView(FormView):
-#     form_class = PersonalDetailsForm
-#     template_name = 'dating/details.html'
-#     success_url = reverse_lazy('accounts:job_status')
 
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         if self.request.user.is_authenticated:
-#             kwargs.update({
-#                 'instance': self.request.user,
-#                 'data': self.request.POST or None,
-#                 'files': self.request.FILES or None,  # Ensure files are passed
-#             })
-#         else:
-#             kwargs.update({
-#                 'data': self.request.POST or None,
-#                 'files': self.request.FILES or None,  # Ensure files are passed
-#             })
-#         return kwargs
-
-#     def form_valid(self, form):
-#         if self.request.user.is_authenticated:
-#             form.instance = self.request.user  # Bind user instance if necessary
-#             form.save()
-
-#             # Handling multiple files uploaded for the 'multiple_image' field
-#             multiple_images = self.request.FILES.getlist('multiple_image')
-#             for image in multiple_images:
-#                 # Logic to process each file (e.g., saving to the model)
-#                 YourModel.objects.create(user=self.request.user, image=image)
-
-#         return super().form_valid(form)
 
     
 class JobStatusView(TemplateView):
