@@ -50,7 +50,7 @@ class User(AbstractUser):
     age=models.SmallIntegerField(null=True,blank=True,
                                 validators=[MinValueValidator(18),MaxValueValidator(34)])
     dob=models.DateField(null=True)
-    phone=models.CharField(max_length=10,blank=True)
+    phone_number=models.CharField(max_length=10,blank=True)
     dob=models.DateField(null=True,unique=True)
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=True)	
     location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,blank=True,related_name="user_location")

@@ -6,7 +6,7 @@ from .views import *
 
 
 urlpatterns = [
-    path('info/',UserFormView.as_view(),name="userinfo"),
+    path('info/',UserJobRelationshipView.as_view(),name="userjobrelationinfo"),
 ]
 
 

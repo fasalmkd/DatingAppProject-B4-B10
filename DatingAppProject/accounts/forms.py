@@ -12,7 +12,7 @@ class UserJobInfoForm(forms.ModelForm):
 class UserRelationShipForm(forms.ModelForm):
     RELATIONSHIP_CHOICES=(('ST','Short Term Relationship'),('LT','Long Term Relationship'))
     APP_CHOICES =(('D','Dating'),('M','Matrimony'))
-    relationship_goals=forms.MultipleChoiceField(choices=RELATIONSHIP_CHOICES,widget=forms.CheckboxSelectMultiple(attrs={'class':'form-check-input','type' : 'checkbox'}))
+    relationship_goals=forms.ChoiceField(choices=RELATIONSHIP_CHOICES,widget=forms.CheckboxSelectMultiple(attrs={'class':'form-check-input','type':'checkbox'}))
    
     class Meta:
         model =User

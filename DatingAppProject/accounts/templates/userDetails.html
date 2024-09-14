@@ -166,18 +166,18 @@
                                                         {% csrf_token %}
                                                         <div class="mb-3">
                                                             
-                                                             {{ first_form.jobtitle }}
+                                                             {{ job_form.jobtitle }}
                                                             <label for="companyname" class="form-label near" style="background-color: #fff;">Title</label>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="companyname" class="form-label expert">Expertise level</label>
                                                             
-                                                            {{ first_form.expertise_level }}
+                                                            {{ job_form.expertise_level }}
                                                         </div>
                                                         
 
                                                         <div class="d-grid gap-2 col-12 mx-auto" style="padding-top: 15px;">
-                                                            <button class="btn btn-primary" type="submit" id="btn-3">Next</button>
+                                                            <button class="btn btn-primary" name="job_form_submit" type="submit" id="btn-3">Next</button>
                                                             
                                                         </div>
 
@@ -186,6 +186,7 @@
 
                                             </div>
                                         </div>
+                                        
                                         <div class="slide slide_2" id="slide-2">
                                             <div class="slide-content">
                                                 <div class="head">
@@ -194,16 +195,16 @@
                                                 <div class="modal-input">
                                                     <form method="POST" id="relationship">
                                                         {% csrf_token %}
-                                                        {% for f in second_form.relationship_goals %}
+                                                        {% for f in relationship_form.relationship_goals %}
                                                         <div class="mb-3 form-check">
-                                                            {{f}}
+                                                            {{ f}}
                                                             
                                                         </div><br>
-                                                        
-                                                       {% endfor %}
+                                                        {% endfor %}
+                                                       
                                                         
                                                         <div class="d-grid gap-2 col-12 mx-auto" style="padding-top: 15px;">
-                                                            <button class="btn btn-primary rel" name="relationship" type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Next</button>
+                                                            <button class="btn btn-primary rel" name="relationship_form_submit" type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Next</button>
                                                             
                                                         </div>
 
@@ -211,6 +212,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                        
                                     </div>
                                 </div>
@@ -235,12 +237,7 @@
                        
                         
                     </div>
-                    
-                      
-                      
-                    <!-- <div class="modal-footer">
-                        
-                    </div> -->
+                  
                     
                 </div>
             </div>
@@ -297,25 +294,9 @@
         e.preventDefault(); // Prevent default form submission to stay on the page
         var form = this;
 
-        // Create a new FormData object from the form
-        var formData = new FormData(form);
-        
-        // Get all checkboxes with the name 'relationship_goals'
-        var checkboxes = document.querySelectorAll('input[name="relationship_goals"]:checked');
-        // alert(checkboxes);
-        // alert(checkboxes.values);
-        // alert(formData);
-       // Remove all existing relationship_goals values from the form data
-        // formData.delete("relationship_goals");
-
-        // Add the single selected value (if any)
-        if (checkboxes.length == 0) {
-            formData.append("relationship_goals", checkboxes[0].value);
-            alert(formData);
-        }
         fetch("", { 
             method: "POST",
-            body: formData,
+            body: new FormData(form),
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }
