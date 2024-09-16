@@ -43,6 +43,7 @@ class Qualification(models.Model):
 
 
 class User(AbstractUser):
+    pass
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
     JOB_CHOICES = (('ER','Employer'),('EE','Employee'),('JS','Jobseeker'))
@@ -67,8 +68,8 @@ class User(AbstractUser):
 
     
     
-    smoking_habits = models.CharField(max_length=15, choices=DRINKING_CHOICES, blank=True)
-    drinking_habits = models.CharField(max_length=3, choices=SMOKING_CHOICES, blank=True)
+    smoking_habits = models.CharField(max_length=15, choices=DRINKING_CHOICES, blank=True,null=True)
+    drinking_habits = models.CharField(max_length=3, choices=SMOKING_CHOICES, blank=True,null=True)
     interest = models.ForeignKey(Interest,on_delete=models.SET_NULL,null=True,related_name="user_interest")
     hobbies = models.ForeignKey(Hobbies,on_delete=models.SET_NULL,null=True,related_name="user_hobbies")
     qualification=models.ForeignKey(Qualification,on_delete=models.SET_NULL,null=True,related_name="user_qualification")

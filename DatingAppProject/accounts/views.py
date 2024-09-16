@@ -31,10 +31,12 @@ class HomeView(TemplateView):
     template_name = 'accounts/home.html'
 
 class SignupView(FormView):
-    model=User
+    # model=User
+    form_class = UserForm
     template_name= 'accounts/signup.html'
-    form_class = UserCreationForm
-    success_url=reverse_lazy('accounts:details')
+    
+    success_url=reverse_lazy('accounts:personaldetails')
+    
 
     def form_valid(self, form):
     # Validate and clean passwords using the form's validation methods
@@ -65,7 +67,7 @@ class SignupView(FormView):
 class LoginView(AuthLoginView):
     template_name = 'accounts/login.html'
     form_class = EmailOrMobileAuthenticationForm
-    success_url = reverse_lazy('accounts:details')
+    success_url = reverse_lazy('accounts:personaldetails')
 
     def form_valid(self, form):
         user = form.get_user()
