@@ -6,68 +6,50 @@ from django.core.validators import RegexValidator
 from django.contrib.auth.password_validation import validate_password
 
 
-
-class UserCreationForm(forms.ModelForm):
-    confirm_password = forms.CharField(
-        max_length=25,
-        min_length=8,
-        widget=forms.PasswordInput({'class':'form-control'}))
+class UserForm(forms.ModelForm):
+    username=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','type' : 'text'}))
     
-    password = forms.CharField(
-        max_length=25,
-        min_length=8,
-        widget=forms.PasswordInput({'class':'form-control'})
-    
-    )
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        
-        # Validate the password using Django's built-in validators
-        try:
-            validate_password(password)
-        except ValidationError as e:
-            raise ValidationError(e)
-
-        return password
-
-    def clean_password2(self):
-        password = self.cleaned_data.get('password')
-        confirm_password = self.cleaned_data.get('confirm_password')
-
-        # Check if the passwords match
-        if password and confirm_password and password != confirm_password:
-            raise ValidationError("Passwords do not match.")
-        
-        return confirm_password
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password"])
-        if commit:
-            user.save()
-        return user
-
-
-    phone_number = forms.CharField(
-        max_length=10,
-        required=True,
-        validators=[RegexValidator(r'^\+?1?\d{9,15}$', 'Enter a valid phone number (up to 10 digits)')]
-    )
-
-    email = forms.EmailField(
-        max_length=254, 
-        required=True,
-        widget=forms.EmailInput({'class':'form-control'})
-    )
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if not email.endswith('@gmail.com'):
-            raise forms.ValidationError('Email must be from gmail.com domain.')
-        return email
+    email=forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','type' : 'email'}))
+    phone_number=forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control','type' : 'number'}))
+    password=forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','type' : 'password'}))
+    confirm_password=forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','type' : 'password'}))
     class Meta:
         model = User
-        fields = ['username', 'email', 'phone_number', 'password']
+        fields = ['username','email','phone_number','password','confirm_password']
+
+        def clean_password(self):
+            password = self.cleaned_data.get('password')
+            
+            # Validate the password using Django's built-in validators
+            try:
+                validate_password(password)
+            except ValidationError as e:
+                raise ValidationError(e)
+
+            return password
+        def clean_password2(self):
+            password = self.cleaned_data.get('password')
+            confirm_password = self.cleaned_data.get('confirm_password')
+
+            # Check if the passwords match
+            if password and confirm_password and password != confirm_password:
+                raise ValidationError("Passwords do not match.")
+            
+            return confirm_password
+        def save(self, commit=True):
+            user = super().save(commit=False)
+            user.set_password(self.cleaned_data["password"])
+            if commit:
+                user.save()
+            return user
+
+
+        
+        def clean_email(self):
+            email = self.cleaned_data.get('email')
+            if not email.endswith('@gmail.com'):
+                raise forms.ValidationError('Email must be from gmail.com domain.')
+            return email
 
 class EmailOrMobileAuthenticationForm(AuthenticationForm):
     username = forms.CharField(label='Email or Mobile', max_length=254,  widget=forms.TextInput({'class':'form-control'}))
@@ -227,4 +209,23 @@ class JobDetailsForm(forms.ModelForm):
        self.fields['company_name'].empty_label = "Company Name"
        self.fields['designation'].empty_label = "Designation"
        self.fields['work_location'].empty_label = "Work Location"
+      
+     
+class UserJobInfoForm(forms.ModelForm):
+    EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
+    jobtitle=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','type' : 'text'}))
+    expertise_level=forms.ChoiceField(choices=EXPERTISELEVEL_CHOICES,widget=forms.Select(attrs={'class':'form-select','type' : 'text'}))
+    class Meta:
+        model =User
+        fields = ["jobtitle","expertise_level"]
+        
+class UserRelationShipForm(forms.ModelForm):
+    RELATIONSHIP_CHOICES=(('ST','Short Term Relationship'),('LT','Long Term Relationship'))
+    APP_CHOICES =(('D','Dating'),('M','Matrimony'))
+    relationship_goals=forms.ChoiceField(choices=RELATIONSHIP_CHOICES,widget=forms.CheckboxSelectMultiple(attrs={'class':'form-check-input','type':'checkbox'}))
+   
+    class Meta:
+        model =User
+        fields = ["relationship_goals"]      
+      
 

@@ -42,7 +42,10 @@ class Qualification(models.Model):
         return self.qualification
 
 
+
 class User(AbstractUser):
+    RELATIONSHIP_CHOICES=(('ST','Short Term Relationship'),('LT','Long Term Relationship'))
+    APP_CHOICES =(('D','Dating'),('M','Matrimony'))
     GENDER_CHOICES=(('F','Female'),('M','Male'),('O','Others'))
     EXPERTISELEVEL_CHOICES=(('B','Beginner'),('I','Intermediate'),('E','Expert'))
     JOB_CHOICES = (('ER','Employer'),('EE','Employee'),('JS','Jobseeker'))
@@ -62,6 +65,7 @@ class User(AbstractUser):
     dob=models.DateField(null=True)
     phone_number=models.CharField(max_length=10,blank=True)
     dob=models.DateField(null=True)
+
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=True)	
     location=models.ForeignKey(Location,on_delete=models.SET_NULL,null=True,related_name="user_location")
 
@@ -85,6 +89,10 @@ class User(AbstractUser):
     profile_pic=models.ImageField(upload_to='profile_pic/',null=True,blank=True)
     short_reel=models.FileField(upload_to='short_reel/',null=True,blank=True)
 
+
+    relationship_goals=models.CharField(choices=RELATIONSHIP_CHOICES,max_length=2,blank=True,null=True)
+    app = models.CharField(choices=APP_CHOICES,max_length=1,blank=True,null=True)
+    
     
     @property
     def is_employer(self):
