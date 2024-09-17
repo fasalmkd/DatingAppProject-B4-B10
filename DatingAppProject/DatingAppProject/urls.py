@@ -21,7 +21,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('', include('accounts.urls'))
+    path('', include('accounts.urls')),
+    path('', include('rightmenubar.urls')),
+    path('', include('payment.urls')),
+    path('', include('userflow.urls'))
 ]
 
 if settings.DEBUG:
