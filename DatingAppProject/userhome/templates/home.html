@@ -1,0 +1,301 @@
+{% extends 'shared/leftright_base.html' %}
+{% load static %}
+
+
+{% block style %}
+<link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+<style>
+    .filter-bar{
+        width: 100%;
+    }
+    .filter-container button{
+        width: 45%;
+    }
+    .menu-bar-container{
+    display: none;
+    }
+
+    .menu-bar{
+        display: none;
+        
+    } 
+    @media screen and (max-width: 766px){
+    
+    .menu-bar-container{
+        width: 100%;
+        height: 100px;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -120px;
+        z-index: 100;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .menu-bar{
+        height:70px;
+        background-color: #fff;
+        width: 80%;
+        border-radius: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        
+    } 
+
+    .menu-bar .menu-icon{
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        
+        color:#d368c5;
+        border: 0;
+        outline: 0;
+        background-color: #fff;
+    }
+    .menu-bar .menu-icon i{
+        font-size: 30px;
+    }
+    .menu-bar .menu-icon:focus{
+        background-color: #d368c5;
+        color:#fff;
+    }
+   
+
+    } 
+    
+</style>
+
+
+{% endblock style %}
+
+{% block maincontent %}
+
+<!--story section-->
+<div class="main-story-container">
+    <div class="horizontal-scroll">
+        <button class="btn-scroll" id="btn-scroll-left" onclick="scrollHorizontally(1)">
+          <i class='bx bx-chevron-left'></i>
+        </button>
+        <button class="btn-scroll" id="btn-scroll-right" onclick="scrollHorizontally(-1)">
+          <i class='bx bx-chevron-right' ></i>
+        </button>
+        <div class="story-container">
+          <div class="story">
+            <div class="story-circle your-story">
+              
+              <img src="{% static 'home/img/silver.jpg' %}" alt="">
+              <i class='bx bx-plus-circle'></i>
+                
+            </div>
+            <span class="user-name">Your story</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+                <button type="button"><img src="{% static 'home/img/pro3.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">Elizabeth</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/pro4.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/pro3.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/pro2.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/im6.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/pro2.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+                <img src="{% static 'home/img/pro1.jpg' %}" alt="">
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/im7.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/im6.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/im7.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+          <div class="story">
+            <div class="story-circle">
+              <button type="button"><img src="{% static 'home/img/im6.jpg' %}" alt=""></button>
+            </div>
+            <span class="user-name">John</span>
+          </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!--story section-->
+
+ <!--filter bar section-->
+ <div class="filter-bar">
+    <div class="filter-container">
+      <button type="button" id="location">Location</button>
+      <button type="button" id="designation">Designation</button>
+      <button type="button" id="qualification">Qualfication</button>
+    </div>
+</div>
+<!--filter bar section-->
+
+<!--profile match section-->
+<!--profile match section-->
+
+<div class="profile-view">
+    <div class="profile-container-left">
+      <div class="profile">
+        <img src="{% static 'home/img/girl.jpg' %}" alt="">
+        <div class="overlay-text">
+          <span class="status">Online</span>
+          <div class="action-icons">
+            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+          </div>
+          <div class="pro-info">
+            <h3>Sithara Nair</h3>
+            <p>Developer, Hydrabad</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="profile">
+        <img src="{% static 'home/img/girl.jpg' %}" alt="">
+        <div class="overlay-text" style="width: 310px;">
+          <span class="status">Online</span>
+          <div class="action-icons">
+            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+          </div>
+          <div class="pro-info">
+            <h3>Sithara Nair</h3>
+            <p>Developer, Hydrabad</p>
+          </div>
+          
+        </div>
+        
+        
+      </div>
+
+      
+      
+      
+        
+       
+        
+        
+
+    </div>
+    <div class="profile-container-right">
+      <div class="profile">
+        <img src="{% static 'home/img/girl.jpg' %}" alt="">
+        <div class="overlay-text" style="width: 310px;">
+          <span class="status">Online</span>
+          <div class="action-icons">
+            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+          </div>
+          <div class="pro-info">
+            <h3>Sithara Nair</h3>
+            <p>Developer, Hydrabad</p>
+          </div>
+        </div>
+        
+        
+      </div>
+      <div class="profile">
+        <img src="{% static 'home/img/girl.jpg' %}" alt="">
+        <div class="overlay-text" style="width: 310px;">
+          <span class="status">Online</span>
+          <div class="action-icons">
+            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+          </div>
+          <div class="pro-info">
+            <h3>Sithara Nair</h3>
+            <p>Developer, Hydrabad</p>
+          </div>
+        </div>
+        
+        
+     
+        
+
+    </div>
+    
+    
+</div>
+
+
+<!-- navbar section-->
+<div class="menu-bar-container">
+  <div class="menu-bar">
+    <button class="menu-icon">
+        <i class='bx bxs-home'></i>
+    </button>
+    <button class="menu-icon">
+        <i class='bx bxs-compass'></i>
+    </button>
+    <button class="menu-icon"><img src="/img/rainbow.png" alt="" style="width: 40px;height: 40px;"></button>
+    <button class="menu-icon"><i class="fa-solid fa-users"></i></button>
+    <button class="menu-icon">
+        <i class='bx bx-message-rounded'></i>
+    </button>
+  </div>
+</div>  
+<!--navbar section -->
+
+{% endblock %}
+
+{% block js %}
+
+<script src="{% static 'home/js/home.js' %}"></script>
+
+{% endblock %}
