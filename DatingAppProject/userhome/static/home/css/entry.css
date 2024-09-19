@@ -13,28 +13,39 @@ body{
     background-size: cover;
     /* filter: blur(5px); */
 }
-.wrapper{
-    max-width: 70%;
-    /* margin: 0 auto; */
-    text-align: center;
-    max-height: 100vh;
-    margin: 0 auto;
-    height: 200px;
+/*----------------------------------entry popup--------------------------------------------*/
+
+
+
+.wrapper button{
+  border-radius: 20px;
+  /* height: 30px; */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  
 }
+
 h6 {
-    width: 150px;
-    margin: 0 auto 5px;
-    padding: 10px;
-    background: red;
-    border-radius: 20px;
-    color: #ffffff;
+  width: 200px;
+  margin: 0 auto 5px;
+  padding: 10px;
+  background: red;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
 }
 .men{
-    background: #5856d6;
+  background: #5856d6;
 }
 .women{
-    background: #ff2d55;
+  background: #ff2d55;
 }
 .both{
-    background: linear-gradient(to right, #017afe, #fff);
+  background: linear-gradient(to right, #017afe, #fff);
 }
+
+
+/*----------------------------------entry popup--------------------------------------------*/
