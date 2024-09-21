@@ -1,4 +1,4 @@
-{% extends 'shared/leftright_base.html' %}
+{% extends 'shared/sidebars.html' %}
 {% load static %}
 
 
@@ -28,6 +28,9 @@
         display: none;
         
     } 
+    .options-list-items.active{
+        background: white;
+    }
     @media screen and (max-width: 455px){
       body{
         width: 500px;
@@ -182,6 +185,9 @@
       margin-left: 180px;
 
     } 
+    .profile img{
+      max-width: 100%; /* Full width on smaller screens */
+    }
   }
 </style>
 
@@ -298,9 +304,9 @@
  <!--filter bar section-->
  <div class="filter-bar">
     <div class="filter-container">
-      <button type="button" id="location">Location</button>
-      <button type="button" id="designation">Designation</button>
-      <button type="button" id="qualification">Qualfication</button>
+      <button type="button" id="location-tab" class="options-list-items active">Location</button>
+      <button type="button" id="designation-tab"class="options-list-items inactive">Designation</button>
+      <button type="button" id="qualification-tab" class="options-list-items inactive">Qualfication</button>
     </div>
 </div>
 <!--filter bar section-->
@@ -308,93 +314,225 @@
 <!--profile match section-->
 <!--profile match section-->
 
-<div class="profile-view">
-    <div class="profile-container-left">
-      <div class="profile">
-        <img src="{% static 'home/img/girl.jpg' %}" alt="">
-        <div class="overlay-text">
-          <span class="status">Online</span>
-          <div class="action-icons">
-            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
-          </div>
-          <div class="pro-info">
-            <h3>Sithara Nair</h3>
-            <p>Developer, Hydrabad</p>
+<!--location-->
+  <div id="location" class="profile-view">
+      <div class="profile-container-left">
+        <div class="profile">
+          <img src="{% static 'home/img/girl.jpg' %}" alt="">
+          <div class="overlay-text">
+            <span class="status">Online</span>
+            <div class="action-icons">
+              <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+            </div>
+            <div class="pro-info">
+              <h3>Sithara Nair</h3>
+              <p>Developer, Hydrabad</p>
+            </div>
           </div>
         </div>
-        
-      </div>
-      <div class="profile">
-        <img src="{% static 'home/img/girl.jpg' %}" alt="">
-        <div class="overlay-text">
-          <span class="status">Online</span>
-          <div class="action-icons">
-            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        <div class="profile">
+          <img src="{% static 'home/img/pro3.jpg' %}" alt="">
+          <div class="overlay-text">
+            <span class="status">Online</span>
+            <div class="action-icons">
+              <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+            </div>
+            <div class="pro-info">
+              <h3>Sithara Nair</h3>
+              <p>Developer, Hydrabad</p>
+            </div>
           </div>
-          <div class="pro-info">
-            <h3>Sithara Nair</h3>
-            <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+      <div class="profile-container-right">
+        <div class="profile">
+          <img src="{% static 'home/img/pro4.jpg' %}" alt="">
+          <div class="overlay-text">
+            <span class="status">Online</span>
+            <div class="action-icons">
+              <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+            </div>
+            <div class="pro-info">
+              <h3>Sithara Nair</h3>
+              <p>Developer, Hydrabad</p>
+            </div>
           </div>
           
+          
         </div>
-        
-        
+        <div class="profile">
+          <img src="{% static 'home/img/pro1.jpg' %}" alt="">
+          <div class="overlay-text">
+            <span class="status">Online</span>
+            <div class="action-icons">
+              <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+              <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+            </div>
+            <div class="pro-info">
+              <h3>Sithara Nair</h3>
+              <p>Developer, Hydrabad</p>
+            </div>
+          </div>
+        </div>
       </div>
+      
+  </div>
+<!--location-->
 
-      
-      
-      
-        
-       
-        
-        
-
-    </div>
-    <div class="profile-container-right">
-      <div class="profile">
-        <img src="{% static 'home/img/girl.jpg' %}" alt="">
-        <div class="overlay-text">
-          <span class="status">Online</span>
-          <div class="action-icons">
-            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
-          </div>
-          <div class="pro-info">
-            <h3>Sithara Nair</h3>
-            <p>Developer, Hydrabad</p>
-          </div>
+<!--designation-->
+<div id="designation" class="profile-view d-none">
+  <div class="profile-container-left">
+    <div class="profile">
+      <img src="{% static 'home/img/pro4.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
         </div>
-        
-        
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
       </div>
-      <div class="profile">
-        <img src="{% static 'home/img/girl.jpg' %}" alt="">
-        <div class="overlay-text">
-          <span class="status">Online</span>
-          <div class="action-icons">
-            <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
-            <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
-          </div>
-          <div class="pro-info">
-            <h3>Sithara Nair</h3>
-            <p>Developer, Hydrabad</p>
-          </div>
-        </div>
-        
-        
-     
-        
-
     </div>
-    
-    
+    <div class="profile">
+      <img src="{% static 'home/img/girl.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-container-right">
+    <div class="profile">
+      <img src="{% static 'home/img/pro2.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+      
+      
+    </div>
+    <div class="profile">
+      <img src="{% static 'home/img/girl.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>
+
+<!--designation-->
+
+<!--qualification-->
+<div id="qualification" class="profile-view d-none">
+  <div class="profile-container-left">
+    <div class="profile">
+      <img src="{% static 'home/img/pro4.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Anupama Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="{% static 'home/img/pro1.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-container-right">
+    <div class="profile">
+      <img src="{% static 'home/img/girl.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+      
+      
+    </div>
+    <div class="profile">
+      <img src="{% static 'home/img/pro2.jpg' %}" alt="">
+      <div class="overlay-text">
+        <span class="status">Online</span>
+        <div class="action-icons">
+          <div class="icon"><button type="button"><i class="fa-solid fa-thumbs-up"></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bxs-message-rounded'></i></button></div>
+          <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
+        </div>
+        <div class="pro-info">
+          <h3>Sithara Nair</h3>
+          <p>Developer, Hydrabad</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<!--qualification-->
 
 
 <!--bottom navbar section-->
@@ -415,10 +553,45 @@
 </div>  
 <!--navbar section -->
 
-{% endblock %}
+{% endblock maincontent %}
 
 {% block js %}
 
 <script src="{% static 'home/js/home.js' %}"></script>
+<script>
+          document.addEventListener('DOMContentLoaded', function() {
+      // Select all tabs and sections
+      const tabs = document.querySelectorAll('.options-list-items');
+      const sections = document.querySelectorAll('.profile-view');
+
+      // Add event listeners to each tab
+      tabs.forEach(tab => {
+          tab.addEventListener('click', function(event) {
+              event.preventDefault();
+
+              // Remove 'active' class from all tabs and 'd-none' class from all sections
+              tabs.forEach(t => t.classList.remove('active'));
+              sections.forEach(s => s.classList.add('d-none'));
+
+              // Add 'active' class to the clicked tab
+              tab.classList.add('active');
+
+              // Show the section related to the clicked tab
+              const targetId = tab.id.replace('-tab', '');
+              const targetSection = document.getElementById(targetId);
+              if (targetSection) {
+                  targetSection.classList.remove('d-none');
+              }
+          });
+      });
+
+      // Set the default active tab and section
+      const defaultTab = document.getElementById('location-tab');
+      if (defaultTab) {
+          defaultTab.click();
+      }
+    });
+
+</script>
 
 {% endblock %}

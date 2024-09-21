@@ -11,9 +11,12 @@ body{
     
     background-image: url('/static/home/img/entrybg.png');
     background-size: cover;
-    /* filter: blur(5px); */
+    background-position: center; 
+    background-repeat: no-repeat; 
+    
 }
 /*----------------------------------entry popup--------------------------------------------*/
+
 
 
 
@@ -49,3 +52,12 @@ h6 {
 
 
 /*----------------------------------entry popup--------------------------------------------*/
+
+/*------------------for responsive-----------------------*/
+@media (max-width: 768px) {
+  .container-fluid {
+      background-size: cover; 
+      background-position: center; 
+  }
+}
+/*------------------for responsive-----------------------*/

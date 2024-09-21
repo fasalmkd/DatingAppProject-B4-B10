@@ -152,7 +152,7 @@ body {
     gap:15px;
     align-items: center;
     position: fixed;
-    z-index: 0;
+    
 }
 
 /*The position: fixed; property is used to make the notification appear over the content, without affecting the
@@ -163,7 +163,7 @@ body {
     transform: scaleY(1);
     height: 600px;
     width: 100%;
-    z-index: 1000;
+    z-index: 9999;
     position: fixed;
     top:-5px;
 }
