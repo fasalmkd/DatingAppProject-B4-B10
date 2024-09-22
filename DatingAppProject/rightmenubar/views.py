@@ -85,11 +85,6 @@ class ReceivedRequestView(View):
         return render(request, self.template_name, context)
 
 
-# shortlisted by.
-class ShortListedByView(TemplateView):
-    template_name = 'right_menu/shortlisted_by.html'
-
-
 # contacted.
 class ContactedView(TemplateView):
     template_name = 'right_menu/contacted.html'
@@ -125,7 +120,7 @@ class SendConnectionRequestView(View):
             )
             messages.success(request, "Connection request sent.")
 
-        return redirect('dating:home')
+        return redirect('rightmenubar:home')
 
 
 # accept the request in received page.
@@ -134,7 +129,7 @@ class AcceptConnectionRequestView(View):
         connection_request = get_object_or_404(ConnectionRequest, id=request_id, receiver=request.user)
         connection_request.accept()
         messages.success(request, "Connection request accepted.")
-        return redirect('dating:recived_request')
+        return redirect('rightmenubar:recived_request')
 
 
 # decline the request in received page.
@@ -143,7 +138,7 @@ class DeclineConnectionRequestView(View):
         connection_request = get_object_or_404(ConnectionRequest, id=request_id, receiver=request.user)
         connection_request.decline()
         messages.success(request, "Connection request declined.")
-        return redirect('dating:recived_request')
+        return redirect('rightmenubar:recived_request')
     
 
 # shortlisted page.
@@ -162,7 +157,7 @@ class RemoveShortlistedUserView(LoginRequiredMixin, View):
     def post(self, request, pk):
         user_to_remove = get_object_or_404(User, pk=pk)
         request.user.shortlisted_users.remove(user_to_remove)
-        return redirect('dating:shortlist')
+        return redirect('rightmenubar:shortlist')
     
 
 # # function for shortlist a user.
@@ -176,7 +171,7 @@ class RemoveShortlistedUserView(LoginRequiredMixin, View):
 
 # shortlisted by users page.
 class ShortListedByView(LoginRequiredMixin, View):
-    template_name = 'right_side_menu_bar/shortlisted_by.html'  # Make sure the template matches your template file name
+    template_name = 'right_menu/shortlisted_by.html'  # Make sure the template matches your template file name
 
     def get(self, request, *args, **kwargs):
         # Get all users who have shortlisted the currently logged-in user
