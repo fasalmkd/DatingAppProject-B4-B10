@@ -317,8 +317,9 @@
 <!--location-->
   <div id="location" class="profile-view">
       <div class="profile-container-left">
+        {% for profile in profiles %}
         <div class="profile">
-          <img src="{% static 'home/img/girl.jpg' %}" alt="">
+          <img src="{{profile.profile_pic.url}}" alt="">
           <div class="overlay-text">
             <span class="status">Online</span>
             <div class="action-icons">
@@ -327,12 +328,13 @@
               <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
             </div>
             <div class="pro-info">
-              <h3>Sithara Nair</h3>
-              <p>Developer, Hydrabad</p>
+              <h3>{{profile.username}}</h3>
+              <p>{{profile.jobtitle}}, {{profile.work_location}}</p>
             </div>
           </div>
         </div>
-        <div class="profile">
+        {% endfor%}
+        <!-- <div class="profile">
           <img src="{% static 'home/img/pro3.jpg' %}" alt="">
           <div class="overlay-text">
             <span class="status">Online</span>
@@ -346,7 +348,7 @@
               <p>Developer, Hydrabad</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="profile-container-right">
         <div class="profile">
@@ -389,6 +391,7 @@
 <!--designation-->
 <div id="designation" class="profile-view d-none">
   <div class="profile-container-left">
+    {% for profile in designation_profiles %}
     <div class="profile">
       <img src="{% static 'home/img/pro4.jpg' %}" alt="">
       <div class="overlay-text">
@@ -399,12 +402,13 @@
           <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
         </div>
         <div class="pro-info">
-          <h3>Sithara Nair</h3>
-          <p>Developer, Hydrabad</p>
+          <h3>{{profile.username}}</h3>
+          <p>{{profile.jobtitle}}, {{profile.work_location}}</p>
         </div>
       </div>
     </div>
-    <div class="profile">
+    {% endfor %}
+    <!-- <div class="profile">
       <img src="{% static 'home/img/girl.jpg' %}" alt="">
       <div class="overlay-text">
         <span class="status">Online</span>
@@ -418,7 +422,7 @@
           <p>Developer, Hydrabad</p>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="profile-container-right">
     <div class="profile">
@@ -462,6 +466,7 @@
 <!--qualification-->
 <div id="qualification" class="profile-view d-none">
   <div class="profile-container-left">
+    {% for profile in qualification_profiles %}
     <div class="profile">
       <img src="{% static 'home/img/pro4.jpg' %}" alt="">
       <div class="overlay-text">
@@ -472,11 +477,12 @@
           <div class="icon"><button type="button"><i class='bx bx-dots-horizontal-rounded'></i></button></div>
         </div>
         <div class="pro-info">
-          <h3>Anupama Nair</h3>
-          <p>Developer, Hydrabad</p>
+          <h3>{{profile.username}}</h3>
+          <p>{{profile.jobtitle}}, {{profile.work_location}}</p>
         </div>
       </div>
     </div>
+    {% endfor %}
     <div class="profile">
       <img src="{% static 'home/img/pro1.jpg' %}" alt="">
       <div class="overlay-text">
