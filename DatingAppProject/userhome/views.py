@@ -43,4 +43,7 @@ class EntryView(TemplateView):
         
         # Redirect to a success or the same page to prevent resubmission
         return redirect(self.success_url) 
-       
+    
+class NotificationView(TemplateView):
+    # template_name="shared/sidebars.html"
+    template_name = "notification.html"
